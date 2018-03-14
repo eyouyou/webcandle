@@ -1,0 +1,35 @@
+﻿@{ 
+    Layout = null;
+}
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+<div id="app">
+    <router-view></router-view>
+    <div class="popup" id="keybroadelfwidget" v-show="keyboradElf.is_show" tabindex="1">
+        <div></div>
+        <input type="text" id="searchKey" v-model="keyboradElf.search_key" />
+        <div v-for="item in keyboradElf.securityitems" data-id="item.code" v-on:click="redirect($event,item)">
+            <div style="float:left;width:30%">{{item.code_display}}</div>
+            <div style="float:left;width:50%">{{item.name}}</div>
+            <div style="float:right;width:20%">{{item.market_display}}</div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/moment")
+@Scripts.Render("~/bundles/signalr")
+@Scripts.Render("~/signalr/js")
+<script src="~/Scripts/axios.min.js" type="text/javascript"></script>
+<script src="~/Scripts/vue.js" type="text/javascript"></script>
+<script src="~/Scripts/vue-router.js" type="text/javascript"></script>
+<script type="text/javascript" src="~/Scripts/echarts.min.js"></script>
+<!--component-->
+<script type="text/javascript" src="~/vue/app/echart-k-component.js"></script>
+<!--expose to router-->
+<script type="text/javascript" src="~/vue/Icomponent.js"></script>
+<!--router-->
+<script type="text/javascript" src="~/vue/router.js"></script>
+<!--main-->
+<script type="text/javascript" src="~/vue/main.js"></script>

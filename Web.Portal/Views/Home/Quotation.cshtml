@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "Quotation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Code = ViewBag.Code;
+}
+
+<h2>个股</h2>             
+<div>
+    <div id="container">
+    </div>
+</div>
+
+@section Scripts{ 
+<script type="text/x-template" id="demo-template">
+    <echart-k :newOption="newOption">
+    </echart-k>
+</script>
+<script type="text/x-template" id="candle-template">
+    <div>
+        <slot></slot>
+    </div>
+</script>
+<script type="text/javascript">
+
+    //function updateData(recv, newdata) {
+    //    var length = recv.series[5].data.length + 1;
+    //    var processed = { categoryData: newdata.splice(0, 1)[0], values: newdata, volumes: [length, newdata[4], newdata[0] > newdata[1] ? 1 : -1] }
+    //    recv.xAxis[0].data.push(processed.categoryData);
+    //    recv.xAxis[1].data.push(processed.categoryData);
+    //    recv.series[0].data.push(processed.values);
+    //    //var sum = 0;
+    //    //for (var j = 0; j < dayCount; j++) {
+    //    //    sum += data.values[i - j][1];
+    //    //}
+    //    //result.push(+(sum / dayCount).toFixed(3));
+
+    //    //recv.series[1].data = calculateMA(5, tempData);//MA5
+    //    //recv.series[2].data = calculateMA(10, tempData);//MA10
+    //    //recv.series[3].data = calculateMA(20, tempData);//MA20
+    //    //recv.series[4].data = calculateMA(30, tempData);//MA30
+    //    recv.series[5].data.push(processed.volumes);//Volume
+    //    return recv;
+    //}
+</script>
+<script type="text/javascript" src="~/Scripts/app/echart-k.js"></script>
+<script  type="text/javascript">
+
+    var vm = new Vue({
+        el: '#container',
+        template: '#demo-template',
+        data: {
+            newOption: {},
+            code: ''
+        },
+        mounted: function () {
+            var self = this;
+            var code = '@ViewBag.Code';
+            self.code = code;
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', "/" + code + ".json");
+            var myChart = echarts.init(this.$el);
+            var $quotation = app.push.hubs[0];
+            console.log(app.currentSecurity.name);
+            xhr.onload = function () {
+                var Simulatedata = JSON.parse(xhr.responseText);
+                //console.log(Simulatedata)
+                self.newOption = distribute(Simulatedata);
+                //console.log(self.newOption);
+
+                $quotation.client.getData = function (data) {
+                    console.log(data);
+                    console.log(moment())
+                    //var one = data.split(",");
+                    //var arr = [];
+                    //arr.push(one);
+                    //self.newOption = distribute(arr);
+                }
+            }
+            xhr.send();
+
+        },
+
+
+    });
+    </script>
+}

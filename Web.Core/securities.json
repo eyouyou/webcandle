@@ -1,0 +1,20 @@
+﻿{
+    "objs": [
+        {
+            "name": "同花顺",
+            "code_display": "300033",
+            "market_display": "深A"
+        },
+        {
+            "name": "浦发银行",
+            "code_display": "600000",
+            "market_display": "沪A"
+        },
+        {
+            "name": "恒生电子",
+            "code_display": "600570",
+            "market_display": "沪A"
+        }
+    ]
+
+}

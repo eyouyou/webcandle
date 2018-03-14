@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="test2">
+    <ul>
+        <li v-for="item in securities">
+            {{item.code_display}}{{item.name}}{{item.market_display}}
+        </li>
+    </ul>
+    <button v-on:click="click">123</button>
+</div>
+@section Scripts{
+<script type="text/javascript">
+    var a = new Vue({
+        el: '#test2',
+        template:"",
+        data: function () {
+            return {
+                securities:[]
+            }
+        },
+        mounted: function () {
+            //var self = this;
+            //this.$ajax.get("/securities.json").then(function (response) {
+            //    var data = response.data.objs;
+            //    console.log(data)
+            //    self.securities = data;
+            //})
+        },
+        methods: {
+            click: function () {
+                console.log("123")
+
+                //var self = this;
+                //this.$ajax.get("/securities.json").then(function (response) {
+                //    var data = response.data.objs;
+                //    console.log(data)
+                //    for (var i = 0; i < data.length; i++) {
+
+                //    }
+                //    self.securities.push(data);
+                //});
+            }
+        }
+    });
+</script>
+}

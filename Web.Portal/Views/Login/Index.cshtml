@@ -1,0 +1,63 @@
+﻿@model Web.Core.Request.LoginViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+<html>
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">登录</div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("Index", "Login"))
+                    {
+                        <fieldset>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.Account,new {@class="form-control",placeholder="Account" })
+                            </div>
+                            <div class="form-group">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", type = "password", placeholder = "Password" })
+                            </div>
+                            @*<div class="checkbox">
+                                <label>
+                                    @Html.CheckBoxFor(m=>m.IsRememberme,new { value = "Remember Me" })
+                                </label>
+                            </div>*@
+                            <button type="submit" class="btn btn-primary" >Login</button>
+                        </fieldset>
+
+                    }
+                </div>
+            </div>
+        </div><!-- /.col-->
+    </div><!-- /.row -->	
+
+    <script type="text/javascript" src="~/Scripts/vue.js">
+    </script>
+    <script type="text/javascript" src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        //vue
+        //var loginForm = new Vue({
+        //    el: "#login",
+        //    data: {
+        //        account: "",
+        //        password: "",
+        //        rememberme: false,
+        //        buttonClass:""
+        //    },
+        //    methods: {
+        //        login: function () {
+                    
+        //        }
+        //    }
+        //})
+    </script>
+</body>
+
+</html>
